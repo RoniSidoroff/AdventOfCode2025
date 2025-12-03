@@ -3,9 +3,6 @@
 // Calculating number of times dial hits 0 (or ends in 0) and reading commands from a text file.
 //
 
-
-
-
 package DayOne;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -38,7 +35,6 @@ public class DayOne {
             System.out.println("Error occured while reading file:");
             e.printStackTrace();
         }
-
     }
 
     private static int calculateZerosPart1() {
