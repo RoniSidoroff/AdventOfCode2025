@@ -1,6 +1,6 @@
 //
 // Day two of Advent of Code 2025
-// Currently only part 1 is solved (calculating invalid IDs from given ranges where two halves of a number are equal)
+// Part 1 and 2 solved. Finding repeating sequences of various lengths from a number
 //
 
 package DayTwo;
@@ -11,6 +11,8 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class DayTwo {
 
@@ -19,6 +21,7 @@ public class DayTwo {
     public static void main(String[] args) {
         readCommmandsFromFile();
         splitAndCheck();
+        splitAndCheckPart2();
     }
 
     private static void readCommmandsFromFile() {
@@ -66,6 +69,33 @@ public class DayTwo {
         }
         // Print the sum, which is the answer to part 1 task of day two
         System.out.println("Sum of all invalid IDs: " + sum);
+    }
+
+    private static void splitAndCheckPart2() {
+        
+        long lowLimit;
+        long highLimit;
+        long sum = 0;
+
+        for(int i = 0; i < ranges.size(); i++) {
+            // Get the range
+            String [] range  = ranges.get(i).split("-", -1);
+            lowLimit = Long.parseLong(range[0]);
+            highLimit = Long.parseLong(range[1]);
+            // Check numbers in the range
+            for (long currentNumber = lowLimit; currentNumber <= highLimit; currentNumber++) {
+                // Matching repeating sequences of numbers using regex
+                String numberString = String.valueOf(currentNumber);
+                Pattern pattern = Pattern.compile("^(\\d+?)\\1+$");
+                Matcher matcher = pattern.matcher(numberString);
+                while (matcher.find()) {
+                    // if sequences are found, add to sum
+                    sum += currentNumber;
+                }
+            }
+        }
+        // Print the sum, which is the answer to part 2 task of day two
+        System.out.println("Sum of all invalid IDs in part 2: " + sum);
     }
 
 }
