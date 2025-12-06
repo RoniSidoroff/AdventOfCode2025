@@ -1,0 +1,7 @@
+.vscode/settings.json
+bin/DayOne/DayOne.class
+bin/DayOne/commands.txt
+bin/DayTwo/DayTwo.class
+bin/DayTwo/ranges.txt
+bin/DayThree/DayThree.class
+bin/DayThree/batteries.txt
